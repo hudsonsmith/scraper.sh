@@ -43,18 +43,18 @@ main () {
 	
 	# Get the web server, DNS addresses, and IP address of the server that replied.
 	SERVER=$(curl -I $ADDRESS | grep "Server" | awk '{print $2}')
-	DNS_LIST=$(dig www.google.com +noall +answer | awk '{print $5}')
+	DNS_LIST="${colors['cyan']}$(dig www.google.com +noall +answer | awk '{print $5}')${colors['reset']}"
 
 	# Clear the screen before printing the information.
 	clear
 
 	echo -e "
-	${colors["green"]}Address:${colors["reset"]} ${colors["cyan"]}$ADDRESS${colors["reset"]}
+${colors["green"]}Address:${colors["reset"]} ${colors["cyan"]}$ADDRESS${colors["reset"]}
 
-	${colors["green"]}Web Server:${colors["reset"]} ${colors["cyan"]}$SERVER${colors["reset"]}
+${colors["green"]}Web Server:${colors["reset"]} ${colors["cyan"]}$SERVER${colors["reset"]}
 
-	DNS Lookup for $ADDRESS:
-	$DNS_LIST
+${colors["green"]}DNS Lookup for${colors["reset"]} ${colors["cyan"]}$ADDRESS${colors["reset"]}${colors["green"]}${colors["cyan"]}:${colors["reset"]}
+$DNS_LIST
 	"
 }
 
