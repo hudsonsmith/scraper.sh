@@ -42,10 +42,9 @@ main () {
 	fi
 	
 	# Get the web server, DNS addresses, and IP address of the server that replied.
-	SERVER_TYPE=$(curl -I $ADDRESS | grep "Server" | awk '{print $2}')
+	SERVER_TYPE=$(curl -s -I $ADDRESS | grep "Server" | awk '{print $2}')
 	DNS_LIST="${colors['cyan']}$(dig $ADDRESS +noall +answer | awk '{print $5}')${colors['reset']}"
 	SERVER=$(dig $ADDRESS +noall +stats | grep "SERVER" | awk '{print $3}' | sed 's/\([^\(\)]+\)//g')
-	echo $SERVER
 
 	# Clear the screen before printing the information.
 	clear
@@ -70,7 +69,7 @@ ${colors["green"]}Web Server:${colors["reset"]} ${colors["cyan"]}$SERVER_TYPE${c
 ${colors["green"]}DNS Lookup for${colors["reset"]} ${colors["cyan"]}$ADDRESS${colors["reset"]}${colors["green"]}${colors["cyan"]}:${colors["reset"]}
 $DNS_LIST
 
-${colors["green"]}Server and port${colors["reset"]}
+${colors["green"]}Host Machine:${colors["reset"]}
 ${colors["cyan"]}$SERVER${colors["reset"]}
 	"
 }
