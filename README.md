@@ -1,4 +1,4 @@
-# scraper.sh
+# Scraper.sh
 
 ## What is scraper.sh?
 Scraper.sh is a bash script the gets information on a specified website and returns data about it.
